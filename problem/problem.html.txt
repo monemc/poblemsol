@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChainGuard - Global Product Authenticity Network</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 24px 0;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #1a1a1a;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #1a1a1a;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Language Selector */
+.language-selector {
+    display: flex;
+    gap: 8px;
+    background: #f5f5f5;
+    padding: 4px;
+    border-radius: 20px;
+}
+
+.lang-btn {
+    padding: 6px 16px;
+    border: none;
+    background: transparent;
+    color: #666;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    background: rgba(26, 26, 26, 0.05);
+    color: #1a1a1a;
+}
+
+.lang-btn.active {
+    background: #1a1a1a;
+    color: white;
+}
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 48px;
+            letter-spacing: -0.5px;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        /* Problem-Solution Grid */
+        .ps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-top: 48px;
+        }
+
+        .ps-card {
+            padding: 32px;
+            background: #fafafa;
+            border-radius: 8px;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+        }
+
+        .ps-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-color: #e5e5e5;
+        }
+
+        .ps-card h3 {
+            margin-bottom: 20px;
+        }
+
+        .ps-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .ps-card li {
+            padding: 12px 0;
+            color: #444;
+            border-bottom: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+        }
+
+        .ps-card li:hover {
+            padding-left: 10px;
+            color: #1a1a1a;
+        }
+
+        .ps-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .team-member {
+            padding: 32px;
+            background: #fafafa;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+        }
+
+        .team-member:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-color: #1a1a1a;
+        }
+
+        .team-member h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .team-member .role {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .team-member .skills {
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* Roadmap */
+        .roadmap {
+            margin-top: 48px;
+        }
+
+        .roadmap-item {
+            padding: 32px;
+            margin-bottom: 24px;
+            background: #fafafa;
+            border-radius: 8px;
+            border-left: 4px solid #1a1a1a;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: rgba(26, 26, 26, 0.03);
+            transition: width 0.4s ease;
+        }
+
+        .roadmap-item:hover::before {
+            width: 100%;
+        }
+
+        .roadmap-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .roadmap-item h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .roadmap-item p {
+            color: #666;
+            font-size: 15px;
+            position: relative;
+        }
+
+        .roadmap-item.active {
+            background: #1a1a1a;
+            color: white;
+            border-left-color: #666;
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(26, 26, 26, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 20px rgba(26, 26, 26, 0);
+            }
+        }
+
+        .roadmap-item.active h4,
+        .roadmap-item.active p {
+            color: white;
+        }
+
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .tech-item {
+            padding: 24px;
+            background: #fafafa;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+        }
+
+        .tech-item:hover {
+            transform: scale(1.05);
+            background: #1a1a1a;
+            color: white;
+            border-color: #1a1a1a;
+        }
+
+        .tech-item h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .tech-item p {
+            font-size: 13px;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .tech-item:hover p {
+            color: #ccc;
+        }
+
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            text-align: center;
+            border-top: 1px solid #e5e5e5;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            .ps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 48px 0;
+            }
+
+            .language-selector {
+                margin-top: 16px;
+            }
+
+                .modal-content {
+                margin: 10% 16px;
+                padding: 24px;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #1a1a1a;
+            width: 0%;
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        /* Team Avatar */
+.team-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #4a4a4a 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 auto 16px;
+    transition: all 0.3s ease;
+}
+
+.team-member:hover .team-avatar {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.view-more {
+    margin-top: 16px;
+    color: #1a1a1a;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.team-member:hover .view-more {
+    transform: translateX(5px);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 40px;
+    max-width: 600px;
+    border-radius: 16px;
+    position: relative;
+    animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 32px;
+    font-weight: 300;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close:hover {
+    color: #1a1a1a;
+    transform: rotate(90deg);
+}
+
+.modal-content h3 {
+    margin-bottom: 8px;
+}
+
+.modal-content .role {
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.modal-content h4 {
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-content li {
+    padding: 8px 0;
+    padding-left: 24px;
+    position: relative;
+}
+
+.modal-content li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #1a1a1a;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">ChainGuard</div>
+                <ul class="nav-links">
+                    <li><a href="#problem">Muammo</a></li>
+                    <li><a href="#team">Jamoa</a></li>
+                    <li><a href="#why-us">Nega biz?</a></li>
+                    <li><a href="#roadmap">Yo'l xaritasi</a></li>
+                    <li><a href="#implementation">Amalga oshirish</a></li>
+                </ul>
+                <div class="language-selector">
+                    <button class="lang-btn active" data-lang="uz">UZ</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ru">RU</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Global Product Authenticity & Safety Network</h1>
+            <p>Blockchain texnologiyasi orqali mahsulotlarning haqiqiyligini tekshirish va soxtalashtirishdan himoya qilish platformasi</p>
+        </div>
+    </section>
+
+    <!-- Problem & Solution -->
+    <section id="problem">
+        <div class="container">
+            <h2 class="fade-in">Muammo → Yechim</h2>
+            
+            <div class="ps-grid">
+                <div class="ps-card slide-in-left">
+                    <h3>Muammolar</h3>
+                    <ul>
+                        <li>Soxta mahsulotlar — yiliga $2-3 trillion zarar</li>
+                        <li>Yaroqlilik muddatini noqonuniy uzaytirish</li>
+                        <li>Supply chain'da shaffoflik yo'q</li>
+                        <li>Davlat nazorati samarasiz</li>
+                        <li>Iste'molchilar mahsulot kelib chiqishini bilmaydi</li>
+                    </ul>
+                </div>
+
+                <div class="ps-card slide-in-right">
+                    <h3>Bizning yechimimiz</h3>
+                    <ul>
+                        <li>Blockchain identifikatori (BCID) har bir mahsulot uchun</li>
+                        <li>Real-time kuzatish — zavoddan iste'molchigacha</li>
+                        <li>AI orqali expiry-tampering aniqlash</li>
+                        <li>QR kod skan qilish orqali instant tekshirish</li>
+                        <li>Davlat organlari uchun monitoring tizimi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team">
+        <div class="container">
+            <h2 class="fade-in">Jamoa</h2>
+            
+            <div class="team-member fade-in" onclick="openModal('ceo')">
+                    <div class="team-avatar">BT</div>
+                    <h4>Behruz Abdurahmonov</h4>
+                    <div class="role">CEO & Blockchain Developer</div>
+                    <div class="skills">Solidity/Func, Web3.js, Smart Contracts, Product Architecture, Backend/Frontend</div>
+                    <div class="view-more" data-lang-key="view-more">Batafsil →</div>
+                </div>
+
+                <div class="team-member fade-in" onclick="openModal('ai')">
+                    <div class="team-avatar">AI</div>
+                    <h4 data-lang-key="ai-name">AI/ML Engineer</h4>
+                    <div class="role" data-lang-key="ai-role">Machine Learning Specialist</div>
+                    <div class="skills">Python, TensorFlow, Computer Vision</div>
+                    <div class="view-more" data-lang-key="view-more">Batafsil →</div>
+                </div>
+
+                <div class="team-member fade-in" onclick="openModal('backend')">
+                <div class="team-avatar">BE</div>
+                <h4 data-lang-key="backend-name">Backend Developer</h4>
+                <div class="role" data-lang-key="backend-role">Backend & API Development</div>
+                <div class="skills">Node.js, PostgreSQL, REST API</div>
+                <div class="view-more" data-lang-key="view-more">Batafsil →</div>
+            </div>
+
+             <div class="team-member fade-in" onclick="openModal('frontend')">
+                <div class="team-avatar">FE</div>
+                <h4 data-lang-key="frontend-name">Frontend Developer</h4>
+                <div class="role" data-lang-key="frontend-role">UI/UX & Mobile Development</div>
+                <div class="skills">React, React Native, TypeScript</div>
+               <div class="view-more" data-lang-key="view-more">Batafsil →</div>
+             </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="why-us">
+        <div class="container">
+            <h2 class="fade-in">Nima uchun aynan bizning jamoamiz?</h2>
+            
+            <div class="ps-grid">
+                <div class="ps-card fade-in">
+                    <h3>Texnik qobiliyat</h3>
+                    <p>Jamoamiz blockchain, AI/ML va full-stack developmentda tajribaga ega. Biz patent-darajali texnologiyalarni ishlab chiqish imkoniyatiga egamiz.</p>
+                </div>
+
+                <div class="ps-card fade-in">
+                    <h3>Bozor tushunchasi</h3>
+                    <p>Global muammoni chuqur tahlil qildik va B2B, B2C, B2G bozorlari uchun moslashuvchan monetizatsiya modelini ishlab chiqdik.</p>
+                </div>
+
+                <div class="ps-card fade-in">
+                    <h3>Skallanish strategiyasi</h3>
+                    <p>Loyihamiz birinchi navbatda oziq-ovqat va dori-darmon sohasida, keyin esa barcha mahsulot turlariga tarqalish uchun mo'ljallangan.</p>
+                </div>
+
+                <div class="ps-card fade-in">
+                    <h3>Davlat va korporatsiyalar bilan hamkorlik</h3>
+                    <p>Bizning platformamiz milliy xavfsizlik, soliq nazorati va brend himoyasi uchun zarur. Bu davlatlarni majburiy integratsiyaga olib keladi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap">
+        <div class="container">
+            <h2 class="fade-in">Yo'l xaritasi</h2>
+            
+            <div class="roadmap">
+                <div class="roadmap-item active fade-in">
+                    <h4>1. Idea (Hozirgi bosqich)</h4>
+                    <p>Muammo tahlili, bozor tadqiqoti, texnologik arxitektura loyihalash, jamoani shakllantirish. Hackathon ishtirokida prototip taqdimoti.</p>
+                </div>
+
+                <div class="roadmap-item fade-in">
+                    <h4>2. Prototype (Yanvar-Mart 2026)</h4>
+                    <p>MVP blockchain smart contract'larni yozish, AI fraud detection modelini o'rgatish, demo web va mobile ilovalarni ishlab chiqish. Birinchi pilot test 100 mahsulot bilan.</p>
+                </div>
+
+                <div class="roadmap-item fade-in">
+                    <h4>3. MVP (Aprel-Iyun 2026)</h4>
+                    <p>3-5 ta mahalliy kompaniya bilan real pilot dastur. QR kod generatsiya tizimi, blockchain'ga yozish va API integratsiya. Birinchi 10,000 mahsulotni kuzatish.</p>
+                </div>
+
+                <div class="roadmap-item fade-in">
+                    <h4>4. Launch (Iyul 2026+)</h4>
+                    <p>Ommaviy ishga tushirish, davlat organlariga taqdimot, xalqaro brendlar bilan shartnomalar, mintaqaviy kengayish. 1 million+ mahsulot oy davomida.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation -->
+    <section id="implementation">
+        <div class="container">
+            <h2 class="fade-in">Yechimni amalga oshirish</h2>
+            
+            <h3 class="fade-in" style="margin-top: 48px;">Texnologiyalar staki</h3>
+            <div class="tech-grid">
+                <div class="tech-item fade-in">
+                    <h4>Blockchain</h4>
+                    <p>Ethereum / Polygon<br>Solidity smart contracts</p>
+                </div>
+                <div class="tech-item fade-in">
+                    <h4>Backend</h4>
+                    <p>Node.js + Express<br>PostgreSQL + Redis</p>
+                </div>
+                <div class="tech-item fade-in">
+                    <h4>Frontend</h4>
+                    <p>React.js<br>React Native (mobile)</p>
+                </div>
+                <div class="tech-item fade-in">
+                    <h4>AI/ML</h4>
+                    <p>Python + TensorFlow<br>Computer Vision API</p>
+                </div>
+                <div class="tech-item fade-in">
+                    <h4>DevOps</h4>
+                    <p>Docker, Kubernetes<br>AWS / Google Cloud</p>
+                </div>
+                <div class="tech-item fade-in">
+                    <h4>QR Generation</h4>
+                    <p>Custom QR Library<br>Encryption protocols</p>
+                </div>
+            </div>
+
+            <h3 class="fade-in" style="margin-top: 64px;">AI vositalari va yechimlar</h3>
+            <div class="ps-grid" style="margin-top: 32px;">
+                <div class="ps-card fade-in">
+                    <h3>Fraud Detection AI</h3>
+                    <p>TensorFlow va PyTorch yordamida yaroqlilik muddati o'zgartirilgan mahsulotlarni aniqlash. Tarixiy ma'lumotlar va anomaly detection algoritmlari asosida ishlaydi.</p>
+                </div>
+
+                <div class="ps-card fade-in">
+                    <h3>Computer Vision</h3>
+                    <p>Google Vision API va OpenCV orqali QR kod sifatini tekshirish, qayta yopishtirilgan etiketlarni aniqlash va mahsulot tasvirini tahlil qilish.</p>
+                </div>
+
+                <div class="ps-card fade-in">
+                    <h3>Risk Scoring System</h3>
+                    <p>Har bir mahsulot uchun xavf ballini hisoblash. Logistika yo'nalishi, skan chastotasi, geografik anomaliyalarni tahlil qiluvchi ML model.</p>
+                </div>
+
+                <div class="ps-card fade-in">
+                    <h3>Claude AI Integration</h3>
+                    <p>Iste'molchilar va kompaniyalar uchun chatbot qo'llab-quvvatlash, ma'lumotlarni tahlil qilish va hisobotlar yaratish.</p>
+                </div>
+            </div>
+
+            <h3 class="fade-in" style="margin-top: 64px;">Amalga oshirish bosqichlari</h3>
+            <div class="roadmap" style="margin-top: 32px;">
+                <div class="roadmap-item fade-in">
+                    <h4>Bosqich 1: Smart Contract Development</h4>
+                    <p>Ethereum testnet'da asosiy BCID smart contract'larini yozish. Mahsulot registratsiya, o'zgartirish va tekshirish funksiyalarini qo'shish.</p>
+                </div>
+
+                <div class="roadmap-item fade-in">
+                    <h4>Bosqich 2: Backend API yaratish</h4>
+                    <p>RESTful API orqali blockchain bilan bog'lanish, ma'lumotlar bazasini tuzish, authentication va kompaniya rollarini boshqarish.</p>
+                </div>
+
+                <div class="roadmap-item fade-in">
+                    <h4>Bosqich 3: AI modellarini o'rgatish</h4>
+                    <p>Fraud detection modeli uchun sintetik va real ma'lumotlar to'plash, model training va testing. Aniqlik 95%+ bo'lishi kerak.</p>
+                </div>
+
+                <div class="roadmap-item fade-in">
+                    <h4>Bosqich 4: Frontend va mobile ilovalar</h4>
+                    <p>Kompaniyalar uchun dashboard, iste'molchilar uchun QR scanner mobile ilova, davlat organlari uchun monitoring panel.</p>
+                </div>
+
+                <div class="roadmap-item fade-in">
+                    <h4>Bosqich 5: Pilot test va launch</h4>
+                    <p>3-5 kompaniya bilan real test, feedback yig'ish, platform takomillashtirish va marketing kampaniyasi orqali kengayish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Team Modal -->
+<div id="teamModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer class="fade-in">
+        <div class="container">
+            <p>&copy; 2025 ChainGuard. All rights reserved.</p>
+            <p style="margin-top: 8px;">Blockchain-powered product authenticity verification platform</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.progress-bar').style.width = scrolled + '%';
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Language Data
+const translations = {
+    uz: {
+        'nav-problem': 'Muammo',
+        'nav-team': 'Jamoa',
+        'nav-why': 'Nega biz?',
+        'nav-roadmap': "Yo'l xaritasi",
+        'nav-implementation': 'Amalga oshirish',
+        'hero-title': 'Global Product Authenticity & Safety Network',
+        'hero-desc': "Blockchain texnologiyasi orqali mahsulotlarning haqiqiyligini tekshirish va soxtalashtirishdan himoya qilish platformasi",
+        'ceo-role': 'CEO & Blockchain Developer',
+        'ai-name': 'AI/ML Engineer',
+        'ai-role': 'Machine Learning Specialist',
+        'backend-name': 'Backend Developer',
+        'backend-role': 'Backend & API Development',
+        'frontend-name': 'Frontend Developer',
+        'frontend-role': 'UI/UX & Mobile Development',
+        'view-more': 'Batafsil →'
+    },
+    en: {
+        'nav-problem': 'Problem',
+        'nav-team': 'Team',
+        'nav-why': 'Why Us?',
+        'nav-roadmap': 'Roadmap',
+        'nav-implementation': 'Implementation',
+        'hero-title': 'Global Product Authenticity & Safety Network',
+        'hero-desc': "Blockchain-powered platform for product authenticity verification and counterfeit protection",
+        'ceo-role': 'CEO & Blockchain Developer',
+        'ai-name': 'AI/ML Engineer',
+        'ai-role': 'Machine Learning Specialist',
+        'backend-name': 'Backend Developer',
+        'backend-role': 'Backend & API Development',
+        'frontend-name': 'Frontend Developer',
+        'frontend-role': 'UI/UX & Mobile Development',
+        'view-more': 'Learn More →'
+    },
+    ru: {
+        'nav-problem': 'Проблема',
+        'nav-team': 'Команда',
+        'nav-why': 'Почему мы?',
+        'nav-roadmap': 'Дорожная карта',
+        'nav-implementation': 'Реализация',
+        'hero-title': 'Глобальная сеть подлинности продуктов',
+        'hero-desc': "Платформа для проверки подлинности продуктов на основе блокчейна",
+        'ceo-role': 'CEO и Blockchain разработчик',
+        'ai-name': 'AI/ML Инженер',
+        'ai-role': 'Специалист по машинному обучению',
+        'backend-name': 'Backend разработчик',
+        'backend-role': 'Backend и API разработка',
+        'frontend-name': 'Frontend разработчик',
+        'frontend-role': 'UI/UX и мобильная разработка',
+        'view-more': 'Подробнее →'
+    }
+};
+
+// Team Details
+const teamDetails = {
+    ceo: {
+        uz: {
+            name: 'Behruz Toshmatov',
+            role: 'CEO & Blockchain Developer',
+            bio: 'Blockchain texnologiyalari va decentralized tizimlar bo\'yicha 3+ yillik tajriba. Smart contract development va Web3 ekotizimida chuqur bilimga ega.',
+            experience: [
+                'Ethereum va Polygon blockchain\'larda smart contract development',
+                '5+ DeFi va NFT loyihalarida ishtirok',
+                'Solidity, Web3.js va blockchain arxitekturasida ekspert',
+                'Startup building va product management tajribasi'
+            ]
+        },
+        en: {
+            name: 'Behruz Toshmatov',
+            role: 'CEO & Blockchain Developer',
+            bio: '3+ years of experience in blockchain technologies and decentralized systems. Deep expertise in smart contract development and Web3 ecosystem.',
+            experience: [
+                'Smart contract development on Ethereum and Polygon',
+                'Participated in 5+ DeFi and NFT projects',
+                'Expert in Solidity, Web3.js and blockchain architecture',
+                'Experience in startup building and product management'
+            ]
+        },
+        ru: {
+            name: 'Behruz Toshmatov',
+            role: 'CEO и Blockchain разработчик',
+            bio: 'Опыт работы с блокчейн технологиями и децентрализованными системами 3+ года. Глубокие знания в разработке смарт-контрактов и экосистеме Web3.',
+            experience: [
+                'Разработка смарт-контрактов на Ethereum и Polygon',
+                'Участие в 5+ DeFi и NFT проектах',
+                'Эксперт в Solidity, Web3.js и архитектуре блокчейна',
+                'Опыт создания стартапов и управления продуктом'
+            ]
+        }
+    },
+    ai: {
+        uz: {
+            name: 'AI/ML Engineer',
+            role: 'Machine Learning Specialist',
+            bio: 'Sun\'iy intellekt va kompyuter ko\'rish texnologiyalari bo\'yicha mutaxassis. Fraud detection va anomaly detection tizimlarini yaratishda tajriba.',
+            experience: [
+                'TensorFlow va PyTorch frameworklarida model training',
+                'Computer Vision orqali image recognition tizimlari',
+                'Real-time fraud detection algoritmlarini ishlab chiqish',
+                'Big Data va ML pipeline optimallashtirish'
+            ]
+        },
+        en: {
+            name: 'AI/ML Engineer',
+            role: 'Machine Learning Specialist',
+            bio: 'Specialist in artificial intelligence and computer vision technologies. Experience in building fraud detection and anomaly detection systems.',
+            experience: [
+                'Model training with TensorFlow and PyTorch frameworks',
+                'Image recognition systems using Computer Vision',
+                'Development of real-time fraud detection algorithms',
+                'Big Data and ML pipeline optimization'
+            ]
+        },
+        ru: {
+            name: 'AI/ML Инженер',
+            role: 'Специалист по машинному обучению',
+            bio: 'Специалист по искусственному интеллекту и технологиям компьютерного зрения. Опыт создания систем обнаружения мошенничества и аномалий.',
+            experience: [
+                'Обучение моделей на TensorFlow и PyTorch',
+                'Системы распознавания изображений с Computer Vision',
+                'Разработка алгоритмов обнаружения мошенничества в реальном времени',
+                'Оптимизация Big Data и ML pipeline'
+            ]
+        }
+    },
+    backend: {
+        uz: {
+            name: 'Backend Developer',
+            role: 'Backend & API Development',
+            bio: 'Scalable backend tizimlar va RESTful API yaratishda tajribali dasturchi. Microservices arxitektura va cloud deploymentda ekspert.',
+            experience: [
+                'Node.js va Express.js bilan enterprise-level API development',
+                'PostgreSQL, MongoDB, Redis bilan ishlash',
+                'Docker va Kubernetes orqali deployment',
+                'High-load tizimlarni optimallashtirish'
+            ]
+        },
+        en: {
+            name: 'Backend Developer',
+            role: 'Backend & API Development',
+            bio: 'Experienced developer in building scalable backend systems and RESTful APIs. Expert in microservices architecture and cloud deployment.',
+            experience: [
+                'Enterprise-level API development with Node.js and Express.js',
+                'Working with PostgreSQL, MongoDB, Redis',
+                'Deployment with Docker and Kubernetes',
+                'Optimization of high-load systems'
+            ]
+        },
+        ru: {
+            name: 'Backend разработчик',
+            role: 'Backend и API разработка',
+            bio: 'Опытный разработчик масштабируемых backend систем и RESTful API. Эксперт в микросервисной архитектуре и облачном развертывании.',
+            experience: [
+                'Разработка API корпоративного уровня на Node.js и Express.js',
+                'Работа с PostgreSQL, MongoDB, Redis',
+                'Развертывание с Docker и Kubernetes',
+                'Оптимизация высоконагруженных систем'
+            ]
+        }
+    },
+    frontend: {
+        uz: {
+            name: 'Frontend Developer',
+            role: 'UI/UX & Mobile Development',
+            bio: 'Modern web va mobile ilovalarni yaratishda mutaxassis. User experience va responsive designga alohida e\'tibor beruvchi dasturchi.',
+            experience: [
+                'React.js va Next.js bilan SPA ilovalar yaratish',
+                'React Native orqali cross-platform mobile development',
+                'TypeScript va modern JavaScript (ES6+)',
+                'UI/UX best practices va accessibility standardlari'
+            ]
+        },
+        en: {
+            name: 'Frontend Developer',
+            role: 'UI/UX & Mobile Development',
+            bio: 'Specialist in creating modern web and mobile applications. Developer with special attention to user experience and responsive design.',
+            experience: [
+                'Building SPA applications with React.js and Next.js',
+                'Cross-platform mobile development with React Native',
+                'TypeScript and modern JavaScript (ES6+)',
+                'UI/UX best practices and accessibility standards'
+            ]
+        },
+        ru: {
+            name: 'Frontend разработчик',
+            role: 'UI/UX и мобильная разработка',
+            bio: 'Специалист по созданию современных веб и мобильных приложений. Разработчик с особым вниманием к пользовательскому опыту и адаптивному дизайну.',
+            experience: [
+                'Создание SPA приложений на React.js и Next.js',
+                'Кроссплатформенная мобильная разработка на React Native',
+                'TypeScript и современный JavaScript (ES6+)',
+                'Лучшие практики UI/UX и стандарты доступности'
+            ]
+        }
+    }
+};
+
+// Language Switcher
+let currentLang = 'uz';
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentLang = btn.dataset.lang;
+        updateLanguage();
+    });
+});
+
+function updateLanguage() {
+    document.querySelectorAll('[data-lang-key]').forEach(el => {
+        const key = el.dataset.langKey;
+        if (translations[currentLang][key]) {
+            el.textContent = translations[currentLang][key];
+        }
+    });
+}
+
+// Modal Functions
+function openModal(member) {
+    const modal = document.getElementById('teamModal');
+    const modalBody = document.getElementById('modalBody');
+    const data = teamDetails[member][currentLang];
+    
+    modalBody.innerHTML = `
+        <h3>${data.name}</h3>
+        <div class="role">${data.role}</div>
+        <p style="color: #444; line-height: 1.8;">${data.bio}</p>
+        <h4>${currentLang === 'uz' ? 'Tajriba va ko\'nikmalar' : currentLang === 'en' ? 'Experience & Skills' : 'Опыт и навыки'}</h4>
+        <ul>
+            ${data.experience.map(item => `<li>${item}</li>`).join('')}
+        </ul>
+    `;
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('teamModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('teamModal');
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+    </script>
+</body>
+</html>
